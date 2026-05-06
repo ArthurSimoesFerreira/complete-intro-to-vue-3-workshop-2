@@ -1,10 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Playground — Complete Intro to Vue 3</title>
-  </head>
-  <body></body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playground — Complete Intro to Vue 3</title>
+</head>
+
+<body>
+  <h1>Hello Frontend Masters</h1>
+
+  <div id="app">
+
+    <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
+    <p v-else>Odd: {{
+      // It is important to minimize the amount of logic inside the double curly braces, but this is just an example
+      message.toUpperCase()
+      }}</p>
+
+    <ul>
+      <!-- The loop is not in the ul because we put the loop on the element that is going to be repeated -->
+      <li v-for="number in listOfNumbers">
+        {{ number }}
+      </li>
+    </ul>
+
+    <ul v-for="product in listOfProducts">
+      <li>{{ product.id }}</li>
+      <ul>
+        <li v-for="number in product.listOfNumbers"> {{ number }} </li>
+      </ul>
+    </ul>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+
+    // Here we are abstracting a helper function from the Vue library that we will use to create our app
+    const { createApp } = Vue
+
+    const app = createApp({
+      // Data is a function because we want to maintain reactivity and have a new data object for each instance of the app
+      // So data is managed via function
+      data() {
+        return {
+          message: 'Hello it works!',
+          listOfNumbers: [1, 2, 3, 4, 5],
+          listOfProducts: [{
+            name: 1,
+            id: '02d7fd08a2c5481bac905043a763ae04',
+            listOfNumbers: [1, 2, 3, 4, 5]
+          }, {
+            name: 2,
+            id: '84d3087cd25f4c37b564a5f0a86a7627',
+            listOfNumbers: [1, 2, 3, 4, 5]
+          }, {
+            name: 3,
+            id: '31fb1e9869d242ccb9e2f2e6c6c9ab19',
+            listOfNumbers: [1, 2, 3, 4, 5]
+          }, {
+            name: 4,
+            id: '60121dfc026d4ab393b9ddbc1e2cb907',
+            listOfNumbers: [1, 2, 3, 4, 5]
+          }, {
+            name: 5,
+            id: 'fe4e5b87b6b24385ade769fcdd96f1ee',
+            listOfNumbers: [1, 2, 3, 4, 5]
+          }]
+        }
+      }
+    })
+
+    // Tell vue where we want to put the app
+    app.mount('#app')
+  </script>
+</body>
+
 </html>
