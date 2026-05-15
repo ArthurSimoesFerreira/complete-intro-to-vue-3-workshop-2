@@ -13,6 +13,15 @@
 
   <div id="app">
 
+    <p>{{ count }}</p>
+    <button v-on:click="incrementCount">Increment Count</button>
+
+    <h1>{{ incrementAmount }}</h1>
+    <div>
+      <label for="incrementAmount">Increment By: </label>
+      <input type="number" v-model="incrementAmount" />
+    </div>
+
     <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
     <p v-else>Odd: {{
       // It is important to minimize the amount of logic inside the double curly braces, but this is just an example
@@ -45,7 +54,9 @@
       // So data is managed via function
       data() {
         return {
+          count: 10,
           message: 'Hello it works!',
+          incrementAmount: 1,
           listOfNumbers: [1, 2, 3, 4, 5],
           listOfProducts: [{
             name: 1,
@@ -68,6 +79,11 @@
             id: 'fe4e5b87b6b24385ade769fcdd96f1ee',
             listOfNumbers: [1, 2, 3, 4, 5]
           }]
+        }
+      },
+      methods: {
+        incrementCount() {
+          this.count += this.incrementAmount
         }
       }
     })
